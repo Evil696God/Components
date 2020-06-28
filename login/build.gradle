@@ -1,0 +1,84 @@
+if (rootProject.ext.isRunningAlone) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        if (rootProject.ext.isRunningAlone) {
+            applicationId "com.kuke.login"
+        }
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        testInstrumentationRunner rootProject.ext.android.testInstrumentationRunner
+        consumerProguardFiles rootProject.ext.android.consumerProguardFiles
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // 需要 Android Gradle Plugin 3.6.0
+//    viewBinding {
+//        enabled = true
+//    }
+
+    // Android Studio 4.0
+    buildFeatures {
+        viewBinding = true
+    }
+    resourcePrefix "login_"
+    sourceSets {
+        main {
+            //需要在目录main目录下新建两个目录分别为debug和release
+            if (rootProject.ext.isRunningAlone) {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/release/AndroidManifest.xml'
+                java {
+                    //model的时候移除无用的包
+                    exclude 'debug/**'
+                }
+            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(path: ':common')
+    testImplementation rootProject.ext.dependencies.junit
+    androidTestImplementation rootProject.ext.dependencies.androidx_junit
+    androidTestImplementation rootProject.ext.dependencies.androidx_espresso_core
+    // 生命周期
+    //noinspection LifecycleAnnotationProcessorWithJava8
+    annotationProcessor rootProject.ext.dependencies.lifecycle
+    // 阿里路由
+    annotationProcessor rootProject.ext.dependencies.arouter_compiler
+    // glide
+    annotationProcessor rootProject.ext.dependencies.glide_compiler
+    // Room
+    annotationProcessor rootProject.ext.dependencies.room_compiler
+
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+}

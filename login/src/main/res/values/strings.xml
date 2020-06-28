@@ -1,0 +1,4 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="mylibrary_app_name">mylibrary</string>
+    <string name="mylibrary_test">test</string>
+</resources>

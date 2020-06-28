@@ -1,0 +1,5 @@
+rootProject.name='kukey-toc'
+include ':app'
+include ':common'
+include ':login'
+include ':sheet_music'

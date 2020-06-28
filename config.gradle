@@ -1,0 +1,23 @@
+ext {
+    isRunningAlone = false
+    android = [
+            compileSdkVersion        : 29,
+            applicationId            : "com.peakmain.testproject",
+            minSdkVersion            : 16,
+            targetSdkVersion         : 29,
+            versionCode              : 1,
+            versionName              : "1.0",
+            buildToolsVersion        : "29.0.3",
+            testInstrumentationRunner: "androidx.test.runner.AndroidJUnitRunner",
+            consumerProguardFiles    : 'consumer-rules.pro'
+    ]
+    dependencies = [
+            junit                 : 'junit:junit:4.12',
+            androidx_junit        : 'androidx.test.ext:junit:1.1.1',
+            androidx_espresso_core: 'androidx.test.espresso:espresso-core:3.2.0',
+            lifecycle             : 'android.arch.lifecycle:compiler:1.1.1',
+            arouter_compiler      : 'com.alibaba:arouter-compiler:1.2.2',
+            glide_compiler        : 'com.github.bumptech.glide:compiler:4.11.0',
+            room_compiler         : 'android.arch.persistence.room:compiler:1.1.1'
+    ]
+}

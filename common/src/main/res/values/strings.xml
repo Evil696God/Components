@@ -1,0 +1,4 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">kukey-toc</string>
+    <string name="app_test">test</string>
+</resources>

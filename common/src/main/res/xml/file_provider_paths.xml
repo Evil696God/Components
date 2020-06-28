@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <paths>
+        <root-path
+            name="root"
+            path="" />
+
+        <files-path
+            name="files"
+            path="" />
+
+        <cache-path
+            name="cache"
+            path="" />
+
+        <external-path
+            name="external"
+            path="" />
+
+        <external-files-path
+            name="external_file_path"
+            path="" />
+
+        <external-cache-path
+            name="external_cache_path"
+            path="" />
+    </paths>
+</resources>
+<!--
+name 随便取，只是一个标签
+path 这个比较重要，如果不设置，则表示将整个目录进行共享，
+如果设置了，比如 path=”Pictrues”那么，就只共享目录下的 Pictures 文件夹
+-->
