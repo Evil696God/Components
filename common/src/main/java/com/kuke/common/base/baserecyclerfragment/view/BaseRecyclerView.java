@@ -53,8 +53,14 @@ public class BaseRecyclerView extends RecyclerView {
                 // 如果相等则说明已经滑动到最后了
                 int num = recyclerView.getLayoutManager().getItemCount();
                 if (lastPosition == num - 1 && isUp) {
+                    Activity activity = null;
                     if (context instanceof Activity) {
-                        Activity activity = (Activity) BaseRecyclerView.this.context;
+                        activity = (Activity) BaseRecyclerView.this.context;
+
+                    } else if (context instanceof ContextWrapper) {
+                        activity = (Activity) ((ContextWrapper) context).getBaseContext();
+                    }
+                    if (activity != null) {
                         activity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -63,8 +69,14 @@ public class BaseRecyclerView extends RecyclerView {
                         });
                     }
                 } else if (firstPosition == 0 && isPullDown) {
+                    Activity activity = null;
                     if (context instanceof Activity) {
-                        Activity activity = (Activity) BaseRecyclerView.this.context;
+                        activity = (Activity) BaseRecyclerView.this.context;
+
+                    } else if (context instanceof ContextWrapper) {
+                        activity = (Activity) ((ContextWrapper) context).getBaseContext();
+                    }
+                    if (activity != null) {
                         activity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
